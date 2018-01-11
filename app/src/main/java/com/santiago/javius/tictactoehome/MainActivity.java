@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     // tic tac toe board view
-    private class TicTacToeBoardView extends View
+    /*private class TicTacToeBoardView extends View
     {
         public TicTacToeBoardView(Context context)
         {
@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity
             xPaint.setColor(Color.RED);
             xPaint.setStyle(Paint.Style.STROKE);
 
-            /*game.createBoard(canvas, screenWidth, screenHeight);
-            game.drawBoard();
-            game.start();*/
+            //game.createBoard(canvas, screenWidth, screenHeight);
+            //game.drawBoard();
+            //game.start();
             Paint paint = new Paint();
             paint.setStrokeWidth(3);
             paint.setColor(Color.BLUE);
@@ -77,16 +77,16 @@ public class MainActivity extends AppCompatActivity
             canvas.drawLine(0,900,screenWidth,900,paint);
 
 
-            /*String[] board = game.getBoardArr();
+            String[] board = game.getBoardArr();
             for(int i=0;i<9;i++)
             {
                 if(board[i].equals("x"))
                 {
                     //canvas.drawLine(
                 }
-            }*/
+            }
         }
-    }// end of TicTacToeBoardView class
+    }*/
 
     public boolean onTouchEvent(MotionEvent event)
     {
@@ -115,12 +115,7 @@ public class MainActivity extends AppCompatActivity
             double x = event.getX();     // x coordinate of user's click
             double y = event.getY();     // y coordinate of user's click
 
-            //game.checkInput(x,y);
-
-            //ticTacToeBoardView.invalidate();
-
-            //game.checkInput(x,y);
-
+            //Checks to see if player clicked inside of a tile
             //Row 1
             //first tile
             if(x>=coordinates[0][LEFT_BOUNDARY]&&x<=coordinates[0][RIGHT_BOUNDARY]&&y>=coordinates[0][TOP_BOUNDARY]&&y<=coordinates[0][BOTTOM_BOUNDARY])
@@ -175,8 +170,6 @@ public class MainActivity extends AppCompatActivity
 
             //TODO: Add win detection here
             ticTacToeBoardView.invalidate();
-
-
         }
 
 
