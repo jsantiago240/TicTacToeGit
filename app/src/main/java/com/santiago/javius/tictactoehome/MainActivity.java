@@ -21,24 +21,15 @@ public class MainActivity extends AppCompatActivity
     TicTacToeBoardView ticTacToeBoardView;      // View with tic tac toe board
     Game game = new Game();
     Player player = new Player();
-    //private TicTacToeBoard board;
-    //Button tileOne;
 
-
-    // initialize the Activity with the View of the tic tac toe board
+    // initialize the Activity with the View of the splash screen
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_main);
-       //tileOne = findViewById(R.id.tileOne);
-        ticTacToeBoardView = new TicTacToeBoardView(this);
-
-        //setContentView(ticTacToeBoardView);
-
-        setContentView(R.layout.splash_screen);
-
-
+        setContentView(R.layout.activity_main);                     //sets view to main activity layout
+        ticTacToeBoardView = new TicTacToeBoardView(this);  //creates new ticTacToeBoardView
+        setContentView(R.layout.splash_screen);                     //sets view to splash screen/main menu
     }
 
     // tic tac toe board view
@@ -246,14 +237,6 @@ public class MainActivity extends AppCompatActivity
         //Log.i("info: ", playerName);
     }
 
-    public void demoFunction(View view)
-    {
-        //ass
-        //440pm
-        //441
-        //443
-        //444
-    }
 
 
 
