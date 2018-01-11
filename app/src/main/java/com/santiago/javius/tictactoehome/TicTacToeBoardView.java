@@ -18,8 +18,14 @@ public class TicTacToeBoardView extends View
     private int myThirdOfScreen;
     private int myTwoThirdsOfScreen;
     private int myActionBarHeight;
-
+    //private int[][] myBoardCoordinates = new int[8][3];
     private int[][] myBoardCoordinates;
+
+    //move
+    public int[][] getBoardCoordinates()
+    {
+        return myBoardCoordinates;
+    }
 
     public TicTacToeBoardView(Context context)
     {
@@ -41,14 +47,12 @@ public class TicTacToeBoardView extends View
         myThirdOfScreen = myScreenWidth/3;
         myTwoThirdsOfScreen = myThirdOfScreen*2;
 
-        setBoardCoordinates();
-
         drawBoard(canvas);
 
     }
-    private void setBoardCoordinates()
+    public void setBoardCoordinates()
     {
-        myBoardCoordinates = {{0,0,myThirdOfScreen,600},
+        myBoardCoordinates = new int[][]{{0,0,myThirdOfScreen,600},
                 {myThirdOfScreen,0,myTwoThirdsOfScreen,600},
                 {myTwoThirdsOfScreen,0,myScreenWidth,600},
                 {0,600,myThirdOfScreen,900},
@@ -57,7 +61,6 @@ public class TicTacToeBoardView extends View
                 {0,900,myThirdOfScreen,1200},
                 {myThirdOfScreen,900,myTwoThirdsOfScreen,1200},
                 {myTwoThirdsOfScreen,900,myScreenWidth,1200}};
-
     }
 
     private void drawBoard(Canvas canvas)

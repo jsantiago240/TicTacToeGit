@@ -14,7 +14,7 @@ public class TicTacToeBoard
     private String myBoardArr[] = {"","","","","","","","",""};
     //                              0, 1, 2, 3, 4, 5, 6, 7, 8
 
-    int myBoardCoordinates[][] = {{0,0,thirdOfScreenWidth,600},
+    /*int myBoardCoordinates[][] = {{0,0,thirdOfScreenWidth,600},
             {thirdOfScreenWidth,0,twoThirdsOfScreenWidth,600},
             {twoThirdsOfScreenWidth,0,myWidth,600},
             {0,600,thirdOfScreenWidth,900},
@@ -22,7 +22,7 @@ public class TicTacToeBoard
             {twoThirdsOfScreenWidth,600,myWidth,900},
             {0,900,thirdOfScreenWidth,1200},
             {thirdOfScreenWidth,900,twoThirdsOfScreenWidth,1200},
-            {twoThirdsOfScreenWidth,900,myWidth,1200}};
+            {twoThirdsOfScreenWidth,900,myWidth,1200}};*/
 
     //left, top, right, bottom
     //   0,   1,     2,      3

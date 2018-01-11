@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);                     //sets view to main activity layout
         ticTacToeBoardView = new TicTacToeBoardView(this);  //creates new ticTacToeBoardView
+        ticTacToeBoardView.setBoardCoordinates();
         setContentView(R.layout.splash_screen);                     //sets view to splash screen/main menu
+
     }
 
     public boolean onTouchEvent(MotionEvent event)
