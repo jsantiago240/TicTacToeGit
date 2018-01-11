@@ -37,18 +37,6 @@ public class Game extends Activity
 
     public void tileClicked(int tile)
     {
-        /*if (isSingle)
-        {
-            if (myBoard.isSpaceEmpty(tile))
-            {
-                myBoard.placeGamePiece(tile,playerTurn);
-                Log.i("Info", "Piece placed at " + tile);
-                //TODO: draw game piece / switch turn
-                //myBoard.drawGamePiece(x1,y1,x2,y2, playerTurn);
-                //myBoard.drawGamePiece(tile,playerTurn,array);
-            }
-        }*/
-        //Log.i("Info", "Piece placed at " + (tile+1));
         if (isGameSingle())
         {
             if (myBoard.isSpaceEmpty(tile))

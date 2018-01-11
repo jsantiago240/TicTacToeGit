@@ -63,72 +63,15 @@ public class MainActivity extends AppCompatActivity
         {
             double x = event.getX();     // x coordinate of user's click
             double y = event.getY();     // y coordinate of user's click
+            int tileSelected;            //tile player intended to click
 
-            int tileSelected;
-            //TODO: Use for loop
-            //Checks to see if player clicked inside of a tile
-            if(ticTacToeBoardView.inputIsWithinATile(x,y)!=-1)
+            //If the player clicked within a tile that tile is returned (0-8) otherwise a -1 would be returned
+            if(ticTacToeBoardView.inputIsWithinATile(x,y)!= -1)
             {
-                //Log.i("Info", "fits in tile 1");
-                //tileSelected = ticTacToeBoardView.whichTileIsSelected();
-                //game.tileClicked(ticTacToeBoardView.inputIsWithinATile(x,y));   //if empty
                 tileSelected = ticTacToeBoardView.inputIsWithinATile(x,y);
-                Log.i("Info", "fits within tile " + tileSelected);
+                //Log.i("Info", "fits within tile " + tileSelected);
+                game.tileClicked(tileSelected);
             }
-
-
-            /*
-            //Row 1
-            //first tile
-            if(x>=boardCoordinates[0][LEFT_BOUNDARY]&&x<=boardCoordinates[0][RIGHT_BOUNDARY]&&y>=boardCoordinates[0][TOP_BOUNDARY]&&y<=boardCoordinates[0][BOTTOM_BOUNDARY])
-            {
-                Log.i("Info", "fits in tile 1");
-                game.tileClicked(0);
-            }
-            //second tile
-            if(x>=coordinates[1][LEFT_BOUNDARY]&&x<=coordinates[1][RIGHT_BOUNDARY]&&y>=coordinates[1][TOP_BOUNDARY]&&y<=coordinates[1][BOTTOM_BOUNDARY])
-            {
-                game.tileClicked(1);
-            }
-            //third tile
-            if(x>=coordinates[2][LEFT_BOUNDARY]&&x<=coordinates[2][RIGHT_BOUNDARY]&&y>=coordinates[2][TOP_BOUNDARY]&&y<=coordinates[2][BOTTOM_BOUNDARY])
-            {
-                game.tileClicked(2);
-            }
-
-            //Row 2
-            //fourth tile
-            if(x>=coordinates[3][LEFT_BOUNDARY]&&x<=coordinates[3][RIGHT_BOUNDARY]&&y>=coordinates[3][TOP_BOUNDARY]&&y<=coordinates[3][BOTTOM_BOUNDARY])
-            {
-                game.tileClicked(3);
-            }
-            //fifth tile
-            if(x>=coordinates[4][LEFT_BOUNDARY]&&x<=coordinates[4][RIGHT_BOUNDARY]&&y>=coordinates[4][TOP_BOUNDARY]&&y<=coordinates[4][BOTTOM_BOUNDARY])
-            {
-                game.tileClicked(4);
-            }
-            //sixth tile
-            if(x>=coordinates[5][LEFT_BOUNDARY]&&x<=coordinates[5][RIGHT_BOUNDARY]&&y>=coordinates[5][TOP_BOUNDARY]&&y<=coordinates[5][BOTTOM_BOUNDARY])
-            {
-                game.tileClicked(5);
-            }
-
-            //Row 3
-            //seventh tile
-            if(x>=coordinates[6][LEFT_BOUNDARY]&&x<=coordinates[6][RIGHT_BOUNDARY]&&y>=coordinates[6][TOP_BOUNDARY]&&y<=coordinates[6][BOTTOM_BOUNDARY])
-            {
-                game.tileClicked(6);
-            }
-            //eighth tile
-            if(x>=coordinates[7][LEFT_BOUNDARY]&&x<=coordinates[7][RIGHT_BOUNDARY]&&y>=coordinates[7][TOP_BOUNDARY]&&y<=coordinates[7][BOTTOM_BOUNDARY])
-            {
-                game.tileClicked(7);
-            }
-            //ninth tile
-            if(x>=coordinates[8][LEFT_BOUNDARY]&&x<=coordinates[8][RIGHT_BOUNDARY]&&y>=coordinates[8][TOP_BOUNDARY]&&y<=coordinates[8][BOTTOM_BOUNDARY])
-            {
-                game.tileClicked(8);
-            }*/
 
             //TODO: Add win detection here
             ticTacToeBoardView.invalidate();

@@ -94,6 +94,8 @@ public class TicTacToeBoardView extends View
         return myBoardCoordinates;
     }
 
+    //Checks to see if x&y(user's input coordinates) is within one of the tiles
+    //if the user did click within one of the tiles coordinates, that tile is returned, otherwise a -1 is returned
     public int inputIsWithinATile(double x, double y)
     {
         setBoardCoordinates();
@@ -102,15 +104,12 @@ public class TicTacToeBoardView extends View
         {
             if(x>=myBoardCoordinates[i][LEFT_BOUNDARY]&&x<=myBoardCoordinates[i][RIGHT_BOUNDARY]&&y>=myBoardCoordinates[i][TOP_BOUNDARY]&&y<=myBoardCoordinates[i][BOTTOM_BOUNDARY])
             {
-                //Log.i("Info", "fits within tile " + i);
                 return i;   //returns tile if within a tile
             }
         }
 
         return -1;//returns -1 if input doesn't fit in a tile
     }
-
-
 
     //Screen information accessors *****************************************************************
     public int getScreenWidth()
