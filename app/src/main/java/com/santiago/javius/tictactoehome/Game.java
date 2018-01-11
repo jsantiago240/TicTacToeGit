@@ -15,52 +15,26 @@ import android.widget.Toast;
 
 public class Game extends Activity
 {
-    //Button tileOne = (Button) findViewById(R.id.tileOne);
-	 TicTacToeBoard myBoard;
-	private Player myPlayerX;
-	private Player myPlayerO;
+    private TicTacToeBoard myBoard;
 	private boolean isOn;
-    private String playerTurn = "x";
     private boolean isSingle;
+    private String playerTurn = "x";
 
-    public String[] getBoardArr()
-    {
-        return myBoard.getBoardArray();
-    }
-    public void start()
-    {
-        isOn = true;
-    }
-    public void setMode(String mode)
-    {
-        if (mode.equals("single"))
-        {
-            isSingle = true;
-        }
-        else
-        {
-            isSingle = false;
-        }
-    }
     public Game()
     {
-
+        createBoard();
     }
 
-
-    public void createBoard(Canvas canvas, int width, int height)
+    public void createBoard()
     {
-        myBoard = new TicTacToeBoard(canvas, width, height);
-    }
-    public void drawBoard()
-    {
-        myBoard.drawBoard();
+        myBoard = new TicTacToeBoard();
     }
 
     public boolean isGameSingle()
     {
         return isSingle;
     }
+
     public void tileClicked(int tile)
     {
         /*if (isSingle)
@@ -84,8 +58,6 @@ public class Game extends Activity
         }
     }
 
-
-
     private void switchPlayerTurn()
     {
         if (playerTurn.equals("x"))
@@ -93,24 +65,18 @@ public class Game extends Activity
         else
             playerTurn = "x";
     }
+    public void setMode(String mode)
+    {
+        if (mode.equals("single"))
+        {
+            isSingle = true;
+        }
+        else
+        {
+            isSingle = false;
+        }
+    }
 
 
 }
 
-    /*public int getLeftOf(int col, int row)
-    {
-        return myBoard.getCoordinates(col,row,0);
-    }
-    public int getTopOf(int col, int row)
-    {
-        return myBoard.getCoordinates(col, row, 1);
-    }
-    public int getRightOf(int col, int row)
-    {
-        return myBoard.getCoordinates(col, row, 2);
-    }
-    public int getBottomOf(int col, int row)
-    {
-        return myBoard.getCoordinates(col, row, 3);
-    }
-    */

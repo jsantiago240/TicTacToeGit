@@ -32,68 +32,18 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.splash_screen);                     //sets view to splash screen/main menu
     }
 
-    // tic tac toe board view
-    /*private class TicTacToeBoardView extends View
-    {
-        public TicTacToeBoardView(Context context)
-        {
-            super(context);
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas)
-        {
-            super.onDraw(canvas);
-
-            int screenWidth = getWidth();      // width of the View object but can be thought of as the canvas width
-            int screenHeight = getHeight();    // canvas height (TODO: figure out how to account for height of action bar
-            int thirdOfScreen = screenWidth/3;
-            int twoThirdsOfScreen = thirdOfScreen*2;
-
-            //initializes board variable
-            //board = new TicTacToeBoard(canvas, screenWidth, screenHeight);
-            //Game game = new Game(board, playerX, playerO);
-            //game = new Game();
-            Paint xPaint = new Paint();
-            xPaint.setStrokeWidth(3);
-            xPaint.setColor(Color.RED);
-            xPaint.setStyle(Paint.Style.STROKE);
-
-            //game.createBoard(canvas, screenWidth, screenHeight);
-            //game.drawBoard();
-            //game.start();
-            Paint paint = new Paint();
-            paint.setStrokeWidth(3);
-            paint.setColor(Color.BLUE);
-            paint.setStyle(Paint.Style.STROKE);
-
-            //Draws Board
-            //Vertical Lines
-            canvas.drawLine(screenWidth/3, 0, screenWidth/3, 900, paint);
-            canvas.drawLine((screenWidth/3)*2, 0,(screenWidth/3)*2, 900, paint);
-            //Horizontal Lines
-            canvas.drawLine(0,300,screenWidth,300,paint);
-            canvas.drawLine(0,600,screenWidth,600,paint);
-            canvas.drawLine(0,900,screenWidth,900,paint);
-
-
-            String[] board = game.getBoardArr();
-            for(int i=0;i<9;i++)
-            {
-                if(board[i].equals("x"))
-                {
-                    //canvas.drawLine(
-                }
-            }
-        }
-    }*/
-
     public boolean onTouchEvent(MotionEvent event)
     {
-        int screenWidth = game.myBoard.getScreenWidth();
-        //int thirdOfScreen = game.myBoard.getThirdOfScreenWidth();
-        int thirdOfScreen = screenWidth/3;
-        int twoThirdsOfScreen = (thirdOfScreen*2);
+        final int LEFT_BOUNDARY = 0;
+        final int TOP_BOUNDARY = 1;
+        final int RIGHT_BOUNDARY = 2;
+        final int BOTTOM_BOUNDARY = 3;
+
+        int screenWidth = ticTacToeBoardView.getScreenWidth();
+        int thirdOfScreen = ticTacToeBoardView.getThirdOfScreen();
+        int twoThirdsOfScreen = ticTacToeBoardView.getTwoThirdsOfScreen();
+
+
         //                      l,t,r,b
         int coordinates[][] = {{0,0,thirdOfScreen,600},                    //one (4,7)
                 {thirdOfScreen,0,twoThirdsOfScreen,600},     //two (5,8)
@@ -105,16 +55,14 @@ public class MainActivity extends AppCompatActivity
                 {thirdOfScreen,900,twoThirdsOfScreen,1200},  //eight(2,5)
                 {twoThirdsOfScreen,900,screenWidth,1200}};//nine(3,6)*/
         //int coordinates[][] = game.myBoard.getCoordinateArray();
-        final int LEFT_BOUNDARY = 0;
-        final int TOP_BOUNDARY = 1;
-        final int RIGHT_BOUNDARY = 2;
-        final int BOTTOM_BOUNDARY = 3;
+
 
         if (event.getAction() == MotionEvent.ACTION_UP)
         {
             double x = event.getX();     // x coordinate of user's click
             double y = event.getY();     // y coordinate of user's click
 
+            //TODO: Use for loop
             //Checks to see if player clicked inside of a tile
             //Row 1
             //first tile

@@ -13,20 +13,22 @@ import android.view.View;
 
 public class TicTacToeBoardView extends View
 {
-    int screenWidth;
-    //int screenHeight = getHeight();
-    int thirdOfScreen;
-    int twoThirdsOfScreen;
+    private int myScreenWidth;
+    private int myScreenHeight;
+    private int myThirdOfScreen;
+    private int myTwoThirdsOfScreen;
+    private int myActionBarHeight;
 
-    int actionBarHeight;
+    private int[][] myBoardCoordinates;
 
     public TicTacToeBoardView(Context context)
     {
         super(context);
-        //Height of action bar
+
+        //find height of action bar
         TypedValue tv = new TypedValue();
         context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true);
-        actionBarHeight = getResources().getDimensionPixelSize(tv.resourceId);
+        myActionBarHeight = getResources().getDimensionPixelSize(tv.resourceId);
     }
 
     @Override
@@ -34,12 +36,30 @@ public class TicTacToeBoardView extends View
     {
         super.onDraw(canvas);
 
-        screenWidth = getWidth();
-        thirdOfScreen = screenWidth/3;
-        twoThirdsOfScreen = thirdOfScreen*2;
+        myScreenWidth = getWidth();
+        myScreenHeight = getHeight();
+        myThirdOfScreen = myScreenWidth/3;
+        myTwoThirdsOfScreen = myThirdOfScreen*2;
+
+        setBoardCoordinates();
 
         drawBoard(canvas);
+
     }
+    private void setBoardCoordinates()
+    {
+        myBoardCoordinates = {{0,0,myThirdOfScreen,600},
+                {myThirdOfScreen,0,myTwoThirdsOfScreen,600},
+                {myTwoThirdsOfScreen,0,myScreenWidth,600},
+                {0,600,myThirdOfScreen,900},
+                {myThirdOfScreen,600,myTwoThirdsOfScreen,900},
+                {myTwoThirdsOfScreen,600,myScreenWidth,900},
+                {0,900,myThirdOfScreen,1200},
+                {myThirdOfScreen,900,myTwoThirdsOfScreen,1200},
+                {myTwoThirdsOfScreen,900,myScreenWidth,1200}};
+
+    }
+
     private void drawBoard(Canvas canvas)
     {
         Paint paint = new Paint();
@@ -49,11 +69,33 @@ public class TicTacToeBoardView extends View
 
         //Draws Board
         //Vertical Lines
-        canvas.drawLine(screenWidth/3, 0, screenWidth/3, 900, paint);
-        canvas.drawLine((screenWidth/3)*2, 0,(screenWidth/3)*2, 900, paint);
+        canvas.drawLine(myScreenWidth/3, 0, myScreenWidth/3, 900, paint);
+        canvas.drawLine((myScreenWidth/3)*2, 0,(myScreenWidth/3)*2, 900, paint);
         //Horizontal Lines
-        canvas.drawLine(0,300,screenWidth,300,paint);
-        canvas.drawLine(0,600,screenWidth,600,paint);
-        canvas.drawLine(0,900,screenWidth,900,paint);
+        canvas.drawLine(0,300,myScreenWidth,300,paint);
+        canvas.drawLine(0,600,myScreenWidth,600,paint);
+        canvas.drawLine(0,900,myScreenWidth,900,paint);
     }
+
+    public int getScreenWidth()
+    {
+        return myScreenWidth;
+    }
+    public int getScreenHeight()
+    {
+        return myScreenHeight;
+    }
+    public int getThirdOfScreen()
+    {
+        return myThirdOfScreen;
+    }
+    public int getTwoThirdsOfScreen()
+    {
+        return myTwoThirdsOfScreen;
+    }
+    public int getActionBarHeight()
+    {
+        return myActionBarHeight;
+    }
+
 }// end of TicTacToeBoardView class
