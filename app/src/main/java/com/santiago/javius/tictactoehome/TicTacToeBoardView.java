@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -18,14 +19,13 @@ public class TicTacToeBoardView extends View
     private int myThirdOfScreen;
     private int myTwoThirdsOfScreen;
     private int myActionBarHeight;
-    //private int[][] myBoardCoordinates = new int[8][3];
+    //this array will hold the values of each tiles boundaries
     private int[][] myBoardCoordinates;
 
-    //move
-    public int[][] getBoardCoordinates()
-    {
-        return myBoardCoordinates;
-    }
+    final int LEFT_BOUNDARY = 0;
+    final int TOP_BOUNDARY = 1;
+    final int RIGHT_BOUNDARY = 2;
+    final int BOTTOM_BOUNDARY = 3;
 
     public TicTacToeBoardView(Context context)
     {
@@ -42,16 +42,24 @@ public class TicTacToeBoardView extends View
     {
         super.onDraw(canvas);
 
+        //sets screen information
         myScreenWidth = getWidth();
         myScreenHeight = getHeight();
         myThirdOfScreen = myScreenWidth/3;
         myTwoThirdsOfScreen = myThirdOfScreen*2;
 
+        //Draws tic tac toe board
         drawBoard(canvas);
 
+        //TODO: Update according to board values
+
     }
+
+    //Sets the board coordinates
     public void setBoardCoordinates()
     {
+        //Board coordinates are set in this method because if they were initialized at runtime, the variables neccessary would not have yet been initialized
+        //TODO// account for action bar
         myBoardCoordinates = new int[][]{{0,0,myThirdOfScreen,600},
                 {myThirdOfScreen,0,myTwoThirdsOfScreen,600},
                 {myTwoThirdsOfScreen,0,myScreenWidth,600},
@@ -63,6 +71,7 @@ public class TicTacToeBoardView extends View
                 {myTwoThirdsOfScreen,900,myScreenWidth,1200}};
     }
 
+    //Draws Tic Tac Toe board on screen with blue lines
     private void drawBoard(Canvas canvas)
     {
         Paint paint = new Paint();
@@ -80,6 +89,30 @@ public class TicTacToeBoardView extends View
         canvas.drawLine(0,900,myScreenWidth,900,paint);
     }
 
+    public int[][] getBoardCoordinates()
+    {
+        return myBoardCoordinates;
+    }
+
+    public int inputIsWithinATile(double x, double y)
+    {
+        setBoardCoordinates();
+
+        for (int i=0;i<myBoardCoordinates.length;i++)
+        {
+            if(x>=myBoardCoordinates[i][LEFT_BOUNDARY]&&x<=myBoardCoordinates[i][RIGHT_BOUNDARY]&&y>=myBoardCoordinates[i][TOP_BOUNDARY]&&y<=myBoardCoordinates[i][BOTTOM_BOUNDARY])
+            {
+                //Log.i("Info", "fits within tile " + i);
+                return i;   //returns tile if within a tile
+            }
+        }
+
+        return -1;//returns -1 if input doesn't fit in a tile
+    }
+
+
+
+    //Screen information accessors *****************************************************************
     public int getScreenWidth()
     {
         return myScreenWidth;

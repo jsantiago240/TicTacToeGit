@@ -21,6 +21,11 @@ public class MainActivity extends AppCompatActivity
     TicTacToeBoardView ticTacToeBoardView;      // View with tic tac toe board
     Game game = new Game();
     Player player = new Player();
+    int[][] boardCoordinates;
+    final int LEFT_BOUNDARY = 0;
+    final int TOP_BOUNDARY = 1;
+    final int RIGHT_BOUNDARY = 2;
+    final int BOTTOM_BOUNDARY = 3;
 
     // initialize the Activity with the View of the splash screen
     @Override
@@ -30,18 +35,13 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);                     //sets view to main activity layout
         ticTacToeBoardView = new TicTacToeBoardView(this);  //creates new ticTacToeBoardView
         ticTacToeBoardView.setBoardCoordinates();
+        boardCoordinates = ticTacToeBoardView.getBoardCoordinates();
         setContentView(R.layout.splash_screen);                     //sets view to splash screen/main menu
-
     }
 
     public boolean onTouchEvent(MotionEvent event)
     {
-        final int LEFT_BOUNDARY = 0;
-        final int TOP_BOUNDARY = 1;
-        final int RIGHT_BOUNDARY = 2;
-        final int BOTTOM_BOUNDARY = 3;
-
-        int screenWidth = ticTacToeBoardView.getScreenWidth();
+        /*int screenWidth = ticTacToeBoardView.getScreenWidth();
         int thirdOfScreen = ticTacToeBoardView.getThirdOfScreen();
         int twoThirdsOfScreen = ticTacToeBoardView.getTwoThirdsOfScreen();
 
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
                 {0,900,thirdOfScreen,1200},                  //seven(1,4)
                 {thirdOfScreen,900,twoThirdsOfScreen,1200},  //eight(2,5)
                 {twoThirdsOfScreen,900,screenWidth,1200}};//nine(3,6)*/
-        //int coordinates[][] = game.myBoard.getCoordinateArray();
+
 
 
         if (event.getAction() == MotionEvent.ACTION_UP)
@@ -64,13 +64,25 @@ public class MainActivity extends AppCompatActivity
             double x = event.getX();     // x coordinate of user's click
             double y = event.getY();     // y coordinate of user's click
 
+            int tileSelected;
             //TODO: Use for loop
             //Checks to see if player clicked inside of a tile
-            //Row 1
-            //first tile
-            if(x>=coordinates[0][LEFT_BOUNDARY]&&x<=coordinates[0][RIGHT_BOUNDARY]&&y>=coordinates[0][TOP_BOUNDARY]&&y<=coordinates[0][BOTTOM_BOUNDARY])
+            if(ticTacToeBoardView.inputIsWithinATile(x,y)!=-1)
             {
                 //Log.i("Info", "fits in tile 1");
+                //tileSelected = ticTacToeBoardView.whichTileIsSelected();
+                //game.tileClicked(ticTacToeBoardView.inputIsWithinATile(x,y));   //if empty
+                tileSelected = ticTacToeBoardView.inputIsWithinATile(x,y);
+                Log.i("Info", "fits within tile " + tileSelected);
+            }
+
+
+            /*
+            //Row 1
+            //first tile
+            if(x>=boardCoordinates[0][LEFT_BOUNDARY]&&x<=boardCoordinates[0][RIGHT_BOUNDARY]&&y>=boardCoordinates[0][TOP_BOUNDARY]&&y<=boardCoordinates[0][BOTTOM_BOUNDARY])
+            {
+                Log.i("Info", "fits in tile 1");
                 game.tileClicked(0);
             }
             //second tile
@@ -116,7 +128,7 @@ public class MainActivity extends AppCompatActivity
             if(x>=coordinates[8][LEFT_BOUNDARY]&&x<=coordinates[8][RIGHT_BOUNDARY]&&y>=coordinates[8][TOP_BOUNDARY]&&y<=coordinates[8][BOTTOM_BOUNDARY])
             {
                 game.tileClicked(8);
-            }
+            }*/
 
             //TODO: Add win detection here
             ticTacToeBoardView.invalidate();
@@ -160,15 +172,14 @@ public class MainActivity extends AppCompatActivity
     //Main Menu***************************************
     public void singlePlayerButtonClicked(View view)
     {
-        EditText nameEditText = (EditText) findViewById(R.id.nameEditText);
-        String playerName = nameEditText.getText().toString();
-        player.setName(playerName);
-        Toast.makeText(MainActivity.this, "Hi, " + playerName, Toast.LENGTH_LONG).show();
-        game.setMode("single");
-        setContentView(ticTacToeBoardView);
-        //setContentView(R.layout.activity_main);
-
+        EditText nameEditText = (EditText) findViewById(R.id.nameEditText);     //initializes nameEditText
+        String playerName = nameEditText.getText().toString();                  //sets playerName equal to what is typed into nameEditText
+        player.setName(playerName);                                             //assigns playerName to the player's name
+        Toast.makeText(MainActivity.this, "Hi, " + playerName, Toast.LENGTH_LONG).show();   //says hi to the player (Learned from paid Udemy course by Rob Percival)
+        game.setMode("single");                                                 //sets game mode to single player
+        setContentView(ticTacToeBoardView);                                     //sets view to tictactoeboardview
     }
+
     //TODO: finish
     public void twoPlayerButtonClicked(View view)
     {
