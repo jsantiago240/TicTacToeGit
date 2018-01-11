@@ -246,11 +246,12 @@ public class MainActivity extends AppCompatActivity
         //Log.i("info: ", playerName);
     }
 
-    /*public void tileOneClicked(View view)
+    public void demoFunction(View view)
     {
-        game.tileClicked(0, tileOne);
+        //ass
 
-    }*/
+    }
+
 
 
 
