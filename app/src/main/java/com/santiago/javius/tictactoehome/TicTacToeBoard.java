@@ -11,13 +11,15 @@ import android.util.Log;
 
 public class TicTacToeBoard
 {
-    private String myBoardArr[] = {"","","","","","","","",""};
+    private String myBoardArr[] = {"","","","","","","","",""};         //stores board values
 
+    //default constructor
     public TicTacToeBoard()
     {
 
     }
 
+    //returns true if board is full (for draw detection)
     public boolean isBoardFull()
     {
         for (int i=0;i<myBoardArr.length;i++)
@@ -28,12 +30,13 @@ public class TicTacToeBoard
         return true;
     }
 
+    //places game piece
     public void placeGamePiece(int tile, String piece)
     {
         myBoardArr[tile] = piece;
-        //Log.i("Info", piece + " has been placed in " + tile);
     }
 
+    //returns true if tile is empty
     public boolean isSpaceEmpty(int tile)
     {
         if (myBoardArr[tile].equals(""))
@@ -43,27 +46,16 @@ public class TicTacToeBoard
         return false;
     }
 
-    public void clearBoard()
-    {
-        for (int i=0;i<myBoardArr.length;i++)
-        {
-            myBoardArr[i] = "";
-        }
-    }
-
+    //returns board array
     public String[] getBoardArray()
     {
         return myBoardArr;
     }
 
+    //returns whatever is currently in the tile (blank, x or o)
     public String getTileValue(int tile)
     {
         return myBoardArr[tile];
     }
 
-    public void printContents()
-    {
-        for(int i=0;i<myBoardArr.length;i++)
-            Log.i("Info", "Position " + i + ": " + myBoardArr[i]);
-    }
 }//end of class

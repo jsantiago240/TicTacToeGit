@@ -4,12 +4,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
 /**
- * Created by Javius on 1/11/2018.
+ * Created by Javius on 1/11/2018. (moved to separate class file)
  */
 
 public class TicTacToeBoardView extends View
@@ -20,10 +19,10 @@ public class TicTacToeBoardView extends View
     private int myTwoThirdsOfScreen;
     private int myActionBarHeight;
 
-    //temp
-    private TicTacToeBoard myBoard;
+    private TicTacToeBoard myBoard;             //has its own board(initializes when view is initialized)
     private int[][] myBoardCoordinates;         //this array will hold the values of each tiles boundaries
 
+    //Used for coordinates 2d array
     final int LEFT_BOUNDARY = 0;
     final int TOP_BOUNDARY = 1;
     final int RIGHT_BOUNDARY = 2;
@@ -32,13 +31,11 @@ public class TicTacToeBoardView extends View
     public TicTacToeBoardView(Context context, TicTacToeBoard board)
     {
         super(context);
-
-        //find height of action bar (credit: https://stackoverflow.com/questions/7165830/what-is-the-size-of-actionbar-in-pixels)
+        //finds height of action bar (credit: https://stackoverflow.com/questions/7165830/what-is-the-size-of-actionbar-in-pixels)
         TypedValue tv = new TypedValue();
         context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true);
         myActionBarHeight = getResources().getDimensionPixelSize(tv.resourceId);
-
-        myBoard = board;
+        myBoard = board;    //initializes tic tac toe board
     }
 
     @Override
@@ -46,7 +43,7 @@ public class TicTacToeBoardView extends View
     {
         super.onDraw(canvas);
 
-        //sets screen information
+        //initializes screen information
         myScreenWidth = getWidth();
         myScreenHeight = getHeight();
         myThirdOfScreen = myScreenWidth/3;
@@ -55,24 +52,29 @@ public class TicTacToeBoardView extends View
         //Draws tic tac toe board
         drawBoard(canvas);
 
-        //TODO: Update according to board values
+        //Updates screen according to changes made to the board since the last time onDraw was called (view was invalidated)
         updateTiles(canvas);
     }
 
+    //Updates screen according to changes made to the board since the last time onDraw was called (view was invalidated)
     public void updateTiles(Canvas canvas)
     {
+        //Paint object for player x
         Paint xPaint = new Paint();
         xPaint.setStrokeWidth(3);
         xPaint.setColor(Color.RED);
         xPaint.setStyle(Paint.Style.STROKE);
 
+        //Paint object for player o/bot
         Paint oPaint = new Paint();
         oPaint.setStrokeWidth(3);
         oPaint.setColor(Color.GREEN);
         oPaint.setStyle(Paint.Style.STROKE);
 
+        //goes through each tile in the board
         for (int i=0;i<myBoard.getBoardArray().length;i++)
         {
+            //if that tile is an x, that is drawn
             if (myBoard.getTileValue(i).equals("x"))
             {
                 //row one
@@ -122,8 +124,9 @@ public class TicTacToeBoardView extends View
                     canvas.drawLine(myTwoThirdsOfScreen,600,myScreenWidth,900,xPaint);
                     canvas.drawLine(myTwoThirdsOfScreen,900,myScreenWidth,600,xPaint);
                 }
-                myBoard.printContents();
+                //myBoard.printContents(); used to print information to log (unneccesary)
             }
+            //draws o's in appropriate tiles
             else if(myBoard.getTileValue(i).equals("o"))
             {
                 if (i==0)
@@ -164,7 +167,7 @@ public class TicTacToeBoardView extends View
                 {
                     canvas.drawCircle(myTwoThirdsOfScreen + (myThirdOfScreen/2), 750, 145, oPaint);
                 }
-                myBoard.printContents();
+                //myBoard.printContents();
             }
         }
     }
@@ -182,17 +185,19 @@ public class TicTacToeBoardView extends View
                 {0,900,myThirdOfScreen,1200},
                 {myThirdOfScreen,900,myTwoThirdsOfScreen,1200},
                 {myTwoThirdsOfScreen,900,myScreenWidth,1200}};
+        //hard to explain through text, if further explanation is needed it can be explained in person
     }
 
     //Draws Tic Tac Toe board on screen with blue lines
     private void drawBoard(Canvas canvas)
     {
+        //Paint object for drawing of board
         Paint paint = new Paint();
         paint.setStrokeWidth(3);
         paint.setColor(Color.BLUE);
         paint.setStyle(Paint.Style.STROKE);
 
-        //Draws Board
+        //Draws Board*******************************************************************************
         //Vertical Lines
         canvas.drawLine(myScreenWidth/3, 0, myScreenWidth/3, 900, paint);
         canvas.drawLine((myScreenWidth/3)*2, 0,(myScreenWidth/3)*2, 900, paint);
@@ -202,6 +207,7 @@ public class TicTacToeBoardView extends View
         canvas.drawLine(0,900,myScreenWidth,900,paint);
     }
 
+    //Returns myBoardCoordinates
     public int[][] getBoardCoordinates()
     {
         return myBoardCoordinates;
@@ -222,28 +228,6 @@ public class TicTacToeBoardView extends View
         }
 
         return -1;//returns -1 if input doesn't fit in a tile
-    }
-
-    //Screen information accessors *****************************************************************
-    public int getScreenWidth()
-    {
-        return myScreenWidth;
-    }
-    public int getScreenHeight()
-    {
-        return myScreenHeight;
-    }
-    public int getThirdOfScreen()
-    {
-        return myThirdOfScreen;
-    }
-    public int getTwoThirdsOfScreen()
-    {
-        return myTwoThirdsOfScreen;
-    }
-    public int getActionBarHeight()
-    {
-        return myActionBarHeight;
     }
 
 }// end of TicTacToeBoardView class

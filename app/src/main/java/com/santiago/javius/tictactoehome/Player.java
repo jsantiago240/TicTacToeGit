@@ -5,8 +5,6 @@ package com.santiago.javius.tictactoehome;
  */
 public class Player
 {
-    private String myLetter;
-    private TicTacToeBoard myBoard;
     private String myName;
 
     public Player()
@@ -17,5 +15,10 @@ public class Player
     public void setName(String name)
     {
         myName = name;
+    }
+
+    public String getName()
+    {
+        return myName;
     }
 }
