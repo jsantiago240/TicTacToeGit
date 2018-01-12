@@ -71,8 +71,6 @@ public class TicTacToeBoardView extends View
         oPaint.setColor(Color.GREEN);
         oPaint.setStyle(Paint.Style.STROKE);
 
-
-
         for (int i=0;i<myBoard.getBoardArray().length;i++)
         {
             if (myBoard.getTileValue(i).equals("x"))

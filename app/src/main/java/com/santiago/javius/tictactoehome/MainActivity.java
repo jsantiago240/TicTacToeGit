@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity
     Player player = new Player();
     TicTacToeBoard board = new TicTacToeBoard();
     int[][] boardCoordinates;
+    boolean xIsWinner;
 
     // initialize the Activity with the View of the splash screen
     @Override
@@ -52,6 +53,18 @@ public class MainActivity extends AppCompatActivity
             }
 
             //TODO: Add win detection here
+            if(game.checkForWin(board).equals("x"))
+            {
+                xIsWinner = true;
+                Toast.makeText(MainActivity.this, "x won", Toast.LENGTH_LONG).show();   //says hi to the player (Learned from paid Udemy course by Rob Percival)
+
+            }
+            else if(game.checkForWin(board).equals("o"))
+            {
+                xIsWinner = false;
+            }
+
+
             ticTacToeBoardView.invalidate();
         }
 

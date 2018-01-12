@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 public class Game extends Activity
 {
-    //private TicTacToeBoard myBoard;
 	private boolean isOn;
     private boolean isSingle;
     private String playerTurn = "x";
@@ -25,6 +24,95 @@ public class Game extends Activity
         //createBoard();
     }
 
+    public String checkForWin(TicTacToeBoard board)
+    {
+        String[] boardArr = board.getBoardArray();
+
+        if (boardArr[0].equals("x"))
+        {
+            //top row
+            if(boardArr[1].equals("x"))
+            {
+                if(boardArr[2].equals("x"))
+                {
+                    return "x";
+                }
+            }
+            //diagonal top left to bottom right
+            if(boardArr[4].equals("x"))
+            {
+                if(boardArr[8].equals("x"))
+                {
+                    return "x";
+                }
+            }
+            //left column
+            if(boardArr[3].equals("x"))
+            {
+                if(boardArr[6].equals("x"))
+                {
+                    return "x";
+                }
+            }
+        }
+        //left column
+        if(boardArr[2].equals("x"))
+        {
+            if(boardArr[5].equals("x"))
+            {
+                if(boardArr[8].equals("x"))
+                {
+                    return "x";
+                }
+            }
+        }
+        //middle column
+        if(boardArr[1].equals("x"))
+        {
+            if(boardArr[4].equals("x"))
+            {
+                if(boardArr[7].equals("x"))
+                {
+                    return "x";
+                }
+            }
+        }
+        //middle row
+        if(boardArr[3].equals("x"))
+        {
+            if(boardArr[4].equals("x"))
+            {
+                if(boardArr[5].equals("x"))
+                {
+                    return "x";
+                }
+            }
+        }
+        //bottom row
+        if(boardArr[6].equals("x"))
+        {
+            if(boardArr[7].equals("x"))
+            {
+                if(boardArr[8].equals("x"))
+                {
+                    return "x";
+                }
+            }
+        }
+        //diagonal bottom left to top right
+        if(boardArr[6].equals("x"))
+        {
+            if(boardArr[4].equals("x"))
+            {
+                if(boardArr[2].equals("x"))
+                {
+                    return "x";
+                }
+            }
+        }
+
+        return "";  //returns empty if neither player one
+    }
     public void createBoard()
     {
         //myBoard = new TicTacToeBoard();
