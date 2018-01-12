@@ -56,10 +56,10 @@ public class TicTacToeBoardView extends View
         drawBoard(canvas);
 
         //TODO: Update according to board values
-        updateTiles();
+        updateTiles(canvas);
     }
 
-    public void updateTiles()
+    public void updateTiles(Canvas canvas)
     {
         Paint xPaint = new Paint();
         xPaint.setStrokeWidth(3);
@@ -70,7 +70,53 @@ public class TicTacToeBoardView extends View
         {
             if (myBoard.getTileValue(i).equals("x"))
             {
-                Log.i("info", "drawing an x at position " + i);
+                //row one
+                if (i==0)
+                {
+                    canvas.drawLine(0,0,myThirdOfScreen,300,xPaint);
+                    canvas.drawLine(0,300,myThirdOfScreen,0,xPaint);
+                }
+                else if (i==1)
+                {
+                    canvas.drawLine(myThirdOfScreen,0,myTwoThirdsOfScreen,300,xPaint);
+                    canvas.drawLine(myThirdOfScreen,300,myTwoThirdsOfScreen,0,xPaint);
+                }
+                else if (i==2)
+                {
+                    canvas.drawLine(myTwoThirdsOfScreen,0,myScreenWidth,300,xPaint);
+                    canvas.drawLine(myTwoThirdsOfScreen,300,myScreenWidth,0,xPaint);
+                }
+                //row two
+                else if (i==3)
+                {
+                    canvas.drawLine(0,300,myThirdOfScreen,600,xPaint);
+                    canvas.drawLine(0,600,myThirdOfScreen,300,xPaint);
+                }
+                else if (i==4)
+                {
+                    canvas.drawLine(myThirdOfScreen,300,myTwoThirdsOfScreen,600,xPaint);
+                    canvas.drawLine(myThirdOfScreen,600,myTwoThirdsOfScreen,300,xPaint);
+                }
+                else if (i==5)
+                {
+                    canvas.drawLine(myTwoThirdsOfScreen,300,myScreenWidth,600,xPaint);
+                    canvas.drawLine(myTwoThirdsOfScreen,600,myScreenWidth,300,xPaint);
+                }
+                else if (i==6)
+                {
+                    canvas.drawLine(0,600,myThirdOfScreen,900,xPaint);
+                    canvas.drawLine(0,900,myThirdOfScreen,600,xPaint);
+                }
+                else if (i==7)
+                {
+                    canvas.drawLine(myThirdOfScreen,600,myTwoThirdsOfScreen,900,xPaint);
+                    canvas.drawLine(myThirdOfScreen,900,myTwoThirdsOfScreen,600,xPaint);
+                }
+                else if (i==8)
+                {
+                    canvas.drawLine(myTwoThirdsOfScreen,600,myScreenWidth,900,xPaint);
+                    canvas.drawLine(myTwoThirdsOfScreen,900,myScreenWidth,600,xPaint);
+                }
             }
         }
     }
