@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity
         EditText nameEditText = (EditText) findViewById(R.id.nameEditText);     //initializes nameEditText
         String playerName = nameEditText.getText().toString();                  //sets playerName equal to what is typed into nameEditText
         player.setName(playerName);                                             //assigns playerName to the player's name
-        Toast.makeText(MainActivity.this, "Hello players ", Toast.LENGTH_LONG).show();   //says hi to the players (Learned from paid Udemy course by Rob Percival)
+        Toast.makeText(MainActivity.this, "Hello  " + player.getName() + " and guest", Toast.LENGTH_LONG).show();   //says hi to the players (Learned from paid Udemy course by Rob Percival)
         game.setMode("two");                                                 //sets game mode to two player
         setContentView(ticTacToeBoardView);                                     //sets view to tictactoeboardview
     }
