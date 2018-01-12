@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
             //Tells user if x won, o won, or there was a draw through toast messages
             if(game.checkForWin(board).equals("x"))
             {
-                Toast.makeText(MainActivity.this, "x won", Toast.LENGTH_LONG).show();   //tells user that x won (Learned from paid Udemy course by Rob Percival)
+                Toast.makeText(MainActivity.this, "X won", Toast.LENGTH_LONG).show();   //tells user that x won (Learned from paid Udemy course by Rob Percival)
             }
             else if(game.checkForWin(board).equals("o"))
             {
