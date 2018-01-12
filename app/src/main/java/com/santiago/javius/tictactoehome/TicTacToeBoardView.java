@@ -66,6 +66,13 @@ public class TicTacToeBoardView extends View
         xPaint.setColor(Color.RED);
         xPaint.setStyle(Paint.Style.STROKE);
 
+        Paint oPaint = new Paint();
+        oPaint.setStrokeWidth(3);
+        oPaint.setColor(Color.GREEN);
+        oPaint.setStyle(Paint.Style.STROKE);
+
+
+
         for (int i=0;i<myBoard.getBoardArray().length;i++)
         {
             if (myBoard.getTileValue(i).equals("x"))
@@ -117,6 +124,49 @@ public class TicTacToeBoardView extends View
                     canvas.drawLine(myTwoThirdsOfScreen,600,myScreenWidth,900,xPaint);
                     canvas.drawLine(myTwoThirdsOfScreen,900,myScreenWidth,600,xPaint);
                 }
+                myBoard.printContents();
+            }
+            else if(myBoard.getTileValue(i).equals("o"))
+            {
+                if (i==0)
+                {
+                    canvas.drawCircle(myThirdOfScreen/2, 150, 145, oPaint);
+                }
+                else if (i==1)
+                {
+                    canvas.drawCircle(myThirdOfScreen + (myThirdOfScreen/2), 150, 145, oPaint);
+                }
+                else if (i==2)
+                {
+                    canvas.drawCircle(myTwoThirdsOfScreen + (myThirdOfScreen/2), 150, 145, oPaint);
+                }
+                //row 2
+                else if (i==3)
+                {
+                    canvas.drawCircle(myThirdOfScreen/2, 450, 145, oPaint);
+                }
+                else if (i==4)
+                {
+                    canvas.drawCircle(myThirdOfScreen + (myThirdOfScreen/2), 450, 145, oPaint);
+                }
+                else if (i==5)
+                {
+                    canvas.drawCircle(myTwoThirdsOfScreen + (myThirdOfScreen/2), 450, 145, oPaint);
+                }
+                //row 3
+                else if (i==6)
+                {
+                    canvas.drawCircle(myThirdOfScreen/2, 750, 145, oPaint);
+                }
+                else if (i==7)
+                {
+                    canvas.drawCircle(myThirdOfScreen + (myThirdOfScreen/2), 750, 145, oPaint);
+                }
+                else if (i==8)
+                {
+                    canvas.drawCircle(myTwoThirdsOfScreen + (myThirdOfScreen/2), 750, 145, oPaint);
+                }
+                myBoard.printContents();
             }
         }
     }

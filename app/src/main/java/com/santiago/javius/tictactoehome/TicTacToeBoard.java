@@ -50,4 +50,10 @@ public class TicTacToeBoard
     {
         return myBoardArr[tile];
     }
+
+    public void printContents()
+    {
+        for(int i=0;i<myBoardArr.length;i++)
+            Log.i("Info", "Position " + i + ": " + myBoardArr[i]);
+    }
 }//end of class

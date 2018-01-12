@@ -37,7 +37,7 @@ public class Game extends Activity
 
     public void tileClicked(int tile, TicTacToeBoard board)
     {
-        if (isGameSingle())
+        if (isSingle)
         {
             if (board.isSpaceEmpty(tile))
             {
