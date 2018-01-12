@@ -137,24 +137,16 @@ public class Game extends Activity
         {
             //Possible Bug Solution 1/12 7.46am
             //if there hasnt been a draw
-            /*if (!(checkForDraw(board))
+            if (!(checkForDraw(board)))
             {
                 //if the selected tile isnt already filled
-                if (board.isSpaceEmpty(tile)
+                if (board.isSpaceEmpty(tile))
                 {                
                     board.placeGamePiece(tile, playerTurn); //places game piece, in this place (Single player) an "x" will be placed
-                    if (!(checkForDraw(board))              //if there hasnt been a draw
+                    if (!(checkForDraw(board)))             //if there hasnt been a draw
                         botGo(board);                       //then the "bot" places its piece
                 }
-            }*/
-            
-            //Code to remove if solution works *****************************
-            //makes sure selected tile isnt already filled
-            if (board.isSpaceEmpty(tile))
-            {
-                board.placeGamePiece(tile,playerTurn);  //fills that tile with, in this case, x
-                botGo(board);                           //causes "bot" to make move
-            }            
+            }
         }
         //else game is in two player mode
         else
@@ -197,6 +189,12 @@ public class Game extends Activity
     public void setMode(String mode)
     {
         gameMode = mode;
+    }
+
+    //"resets" game
+    public void reset()
+    {
+        playerTurn = "x";
     }
 }
 

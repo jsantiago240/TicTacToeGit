@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity
     Player player = new Player();               //creates player object
     TicTacToeBoard board = new TicTacToeBoard();//creates new tic tac toe board
     int[][] boardCoordinates;                   //array to store boundaries of boards tiles for input purposes
+    Button restartButton;                       //restart game button
 
     // initialize the Activity with the View of the splash screen
     @Override
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);                             //sets view to main activity layout
+        restartButton = findViewById(R.id.restartButton);                   //initializes restart button
         ticTacToeBoardView = new TicTacToeBoardView(this, board);   //creates new ticTacToeBoardView
         ticTacToeBoardView.setBoardCoordinates();                           //initializes array within this class
         boardCoordinates = ticTacToeBoardView.getBoardCoordinates();        //aliases (not sure if im using this vocab correctly) this array to match array of coordinates within this class
@@ -47,19 +51,35 @@ public class MainActivity extends AppCompatActivity
             if(game.checkForWin(board).equals("x"))
             {
                 Toast.makeText(MainActivity.this, "X won", Toast.LENGTH_LONG).show();   //tells user that x won (Learned from paid Udemy course by Rob Percival)
+                gamesOver();
             }
             else if(game.checkForWin(board).equals("o"))
             {
                 Toast.makeText(MainActivity.this, "O Won", Toast.LENGTH_LONG).show();   //tells user that o won (Learned from paid Udemy course by Rob Percival)
+                gamesOver();
             }
             else if(game.checkForDraw(board))
             {
                 Toast.makeText(MainActivity.this, "Draw", Toast.LENGTH_LONG).show();   //tells user there was a draw (Learned from paid Udemy course by Rob Percival)
+                gamesOver();
             }
-
             ticTacToeBoardView.invalidate();    //Recalls this views onDraw method (learned from google searches but was already in demo)
         }
         return true;
+    }
+
+    //Restart button Button onClick
+    public void restartButtonClicked(View view)
+    {
+        game.reset();                           //resets game
+        board.reset();                          //resets board
+        setContentView(R.layout.splash_screen); //switches content view back to main menu
+    }
+
+    public void gamesOver()
+    {
+        //Switches view to main activity which has restart button
+        setContentView(R.layout.activity_main);
     }
 
     //Main Menu buttons*****************************************************************************

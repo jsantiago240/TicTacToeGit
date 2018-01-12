@@ -58,4 +58,10 @@ public class TicTacToeBoard
         return myBoardArr[tile];
     }
 
+    //resets board
+    public void reset()
+    {
+        for (int i=0;i<myBoardArr.length;i++)
+            myBoardArr[i] = "";
+    }
 }//end of class

@@ -229,5 +229,4 @@ public class TicTacToeBoardView extends View
 
         return -1;//returns -1 if input doesn't fit in a tile
     }
-
 }// end of TicTacToeBoardView class
