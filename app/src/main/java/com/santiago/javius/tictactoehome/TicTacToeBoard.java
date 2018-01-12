@@ -18,6 +18,16 @@ public class TicTacToeBoard
 
     }
 
+    public boolean isBoardFull()
+    {
+        for (int i=0;i<myBoardArr.length;i++)
+        {
+            if (myBoardArr[i].equals(""))
+                return false;
+        }
+        return true;
+    }
+
     public void placeGamePiece(int tile, String piece)
     {
         myBoardArr[tile] = piece;

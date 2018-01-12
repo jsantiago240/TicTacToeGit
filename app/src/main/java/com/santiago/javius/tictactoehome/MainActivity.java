@@ -56,14 +56,15 @@ public class MainActivity extends AppCompatActivity
             //TODO: Add win detection here
             if(game.checkForWin(board).equals("x"))
             {
-                xIsWinner = true;
                 Toast.makeText(MainActivity.this, "x won", Toast.LENGTH_LONG).show();   //says hi to the player (Learned from paid Udemy course by Rob Percival)
             }
             else if(game.checkForWin(board).equals("o"))
             {
-                oIsWinner = true;
                 Toast.makeText(MainActivity.this, "O Won", Toast.LENGTH_LONG).show();   //says hi to the player (Learned from paid Udemy course by Rob Percival)
-
+            }
+            else if(game.checkForDraw(board))
+            {
+                Toast.makeText(MainActivity.this, "Draw", Toast.LENGTH_LONG).show();   //says hi to the player (Learned from paid Udemy course by Rob Percival)
             }
 
 
