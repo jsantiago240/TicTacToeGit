@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity
     TicTacToeBoard board = new TicTacToeBoard();//creates new tic tac toe board
     int[][] boardCoordinates;                   //array to store boundaries of boards tiles for input purposes
     Button restartButton;                       //restart game button
+    TextView thanksTextView;                    //used to say thanks to the user
+    ImageView wyoLogoImageView;                 //Displays wyo logo in an image view
 
     // initialize the Activity with the View of the splash screen
     @Override
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);                             //sets view to main activity layout
         restartButton = findViewById(R.id.restartButton);                   //initializes restart button
+        thanksTextView = findViewById(R.id.thanksTextView);                 //initializes thanksTextView
+        wyoLogoImageView = findViewById(R.id.wyoLogoImageView);             //initializes wyo image view
         ticTacToeBoardView = new TicTacToeBoardView(this, board);   //creates new ticTacToeBoardView
         ticTacToeBoardView.setBoardCoordinates();                           //initializes array within this class
         boardCoordinates = ticTacToeBoardView.getBoardCoordinates();        //aliases (not sure if im using this vocab correctly) this array to match array of coordinates within this class
