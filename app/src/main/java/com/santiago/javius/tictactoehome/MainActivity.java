@@ -21,11 +21,8 @@ public class MainActivity extends AppCompatActivity
     TicTacToeBoardView ticTacToeBoardView;      // View with tic tac toe board
     Game game = new Game();
     Player player = new Player();
+    TicTacToeBoard board = new TicTacToeBoard();
     int[][] boardCoordinates;
-    final int LEFT_BOUNDARY = 0;
-    final int TOP_BOUNDARY = 1;
-    final int RIGHT_BOUNDARY = 2;
-    final int BOTTOM_BOUNDARY = 3;
 
     // initialize the Activity with the View of the splash screen
     @Override
@@ -33,7 +30,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);                     //sets view to main activity layout
-        ticTacToeBoardView = new TicTacToeBoardView(this);  //creates new ticTacToeBoardView
+        ticTacToeBoardView = new TicTacToeBoardView(this, board);  //creates new ticTacToeBoardView
         ticTacToeBoardView.setBoardCoordinates();
         boardCoordinates = ticTacToeBoardView.getBoardCoordinates();
         setContentView(R.layout.splash_screen);                     //sets view to splash screen/main menu
@@ -41,24 +38,6 @@ public class MainActivity extends AppCompatActivity
 
     public boolean onTouchEvent(MotionEvent event)
     {
-        /*int screenWidth = ticTacToeBoardView.getScreenWidth();
-        int thirdOfScreen = ticTacToeBoardView.getThirdOfScreen();
-        int twoThirdsOfScreen = ticTacToeBoardView.getTwoThirdsOfScreen();
-
-
-        //                      l,t,r,b
-        int coordinates[][] = {{0,0,thirdOfScreen,600},                    //one (4,7)
-                {thirdOfScreen,0,twoThirdsOfScreen,600},     //two (5,8)
-                {twoThirdsOfScreen,0,screenWidth,600},       //three(6,9)
-                {0,600,thirdOfScreen,900},                   //four (1,7)
-                {thirdOfScreen,600,twoThirdsOfScreen,900},   //five (2,8)
-                {twoThirdsOfScreen,600,screenWidth,900},     //six(3,9)
-                {0,900,thirdOfScreen,1200},                  //seven(1,4)
-                {thirdOfScreen,900,twoThirdsOfScreen,1200},  //eight(2,5)
-                {twoThirdsOfScreen,900,screenWidth,1200}};//nine(3,6)*/
-
-
-
         if (event.getAction() == MotionEvent.ACTION_UP)
         {
             double x = event.getX();     // x coordinate of user's click
@@ -69,25 +48,12 @@ public class MainActivity extends AppCompatActivity
             if(ticTacToeBoardView.inputIsWithinATile(x,y)!= -1)
             {
                 tileSelected = ticTacToeBoardView.inputIsWithinATile(x,y);
-                //Log.i("Info", "fits within tile " + tileSelected);
-                game.tileClicked(tileSelected);
+                game.tileClicked(tileSelected, board);
             }
 
             //TODO: Add win detection here
             ticTacToeBoardView.invalidate();
         }
-
-
-
-            // determine player's last move
-                /*if (x >= 0 && x <= 300 && y >= 0 && y <= 300)        // board[0][0]
-                {
-                    boardArr[0][0] = playerTurn;
-                }
-                else if (x >= 300 && x <= 600 && y >= 0 && y <= 300) // board[0][1]
-                {
-                    boardArr[0][1] = playerTurn;
-                }*/
 
                 /*// win/draw detection
                 if (boardArr[0][0].equals("x") && boardArr[0][1].equals("x") && boardArr[0][2].equals("x"))

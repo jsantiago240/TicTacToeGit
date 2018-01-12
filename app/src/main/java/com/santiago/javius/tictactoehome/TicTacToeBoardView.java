@@ -19,22 +19,26 @@ public class TicTacToeBoardView extends View
     private int myThirdOfScreen;
     private int myTwoThirdsOfScreen;
     private int myActionBarHeight;
-    //this array will hold the values of each tiles boundaries
-    private int[][] myBoardCoordinates;
+
+    //temp
+    private TicTacToeBoard myBoard;
+    private int[][] myBoardCoordinates;         //this array will hold the values of each tiles boundaries
 
     final int LEFT_BOUNDARY = 0;
     final int TOP_BOUNDARY = 1;
     final int RIGHT_BOUNDARY = 2;
     final int BOTTOM_BOUNDARY = 3;
 
-    public TicTacToeBoardView(Context context)
+    public TicTacToeBoardView(Context context, TicTacToeBoard board)
     {
         super(context);
 
-        //find height of action bar
+        //find height of action bar (credit: https://stackoverflow.com/questions/7165830/what-is-the-size-of-actionbar-in-pixels)
         TypedValue tv = new TypedValue();
         context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true);
         myActionBarHeight = getResources().getDimensionPixelSize(tv.resourceId);
+
+        myBoard = board;
     }
 
     @Override
@@ -52,7 +56,23 @@ public class TicTacToeBoardView extends View
         drawBoard(canvas);
 
         //TODO: Update according to board values
+        updateTiles();
+    }
 
+    public void updateTiles()
+    {
+        Paint xPaint = new Paint();
+        xPaint.setStrokeWidth(3);
+        xPaint.setColor(Color.RED);
+        xPaint.setStyle(Paint.Style.STROKE);
+
+        for (int i=0;i<myBoard.getBoardArray().length;i++)
+        {
+            if (myBoard.getTileValue(i).equals("x"))
+            {
+                Log.i("info", "drawing an x at position " + i);
+            }
+        }
     }
 
     //Sets the board coordinates

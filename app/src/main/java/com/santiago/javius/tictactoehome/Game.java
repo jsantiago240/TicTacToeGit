@@ -15,19 +15,19 @@ import android.widget.Toast;
 
 public class Game extends Activity
 {
-    private TicTacToeBoard myBoard;
+    //private TicTacToeBoard myBoard;
 	private boolean isOn;
     private boolean isSingle;
     private String playerTurn = "x";
 
     public Game()
     {
-        createBoard();
+        //createBoard();
     }
 
     public void createBoard()
     {
-        myBoard = new TicTacToeBoard();
+        //myBoard = new TicTacToeBoard();
     }
 
     public boolean isGameSingle()
@@ -35,14 +35,19 @@ public class Game extends Activity
         return isSingle;
     }
 
-    public void tileClicked(int tile)
+    public void tileClicked(int tile, TicTacToeBoard board)
     {
         if (isGameSingle())
         {
-            if (myBoard.isSpaceEmpty(tile))
+            if (board.isSpaceEmpty(tile))
             {
-                myBoard.placeGamePiece(tile,"x");
+                board.placeGamePiece(tile,playerTurn);
+                switchPlayerTurn();
             }
+        }
+        else    //game is in Two Player mode
+        {
+
         }
     }
 
@@ -53,6 +58,7 @@ public class Game extends Activity
         else
             playerTurn = "x";
     }
+
     public void setMode(String mode)
     {
         if (mode.equals("single"))
@@ -64,7 +70,6 @@ public class Game extends Activity
             isSingle = false;
         }
     }
-
 
 }
 
