@@ -21,7 +21,7 @@ public class TicTacToeBoard
     public void placeGamePiece(int tile, String piece)
     {
         myBoardArr[tile] = piece;
-        Log.i("Info", piece + " has been placed in " + tile);
+        //Log.i("Info", piece + " has been placed in " + tile);
     }
 
     public boolean isSpaceEmpty(int tile)

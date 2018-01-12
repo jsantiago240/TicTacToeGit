@@ -173,7 +173,6 @@ public class TicTacToeBoardView extends View
     public void setBoardCoordinates()
     {
         //Board coordinates are set in this method because if they were initialized at runtime, the variables neccessary would not have yet been initialized
-        //TODO// account for action bar
         myBoardCoordinates = new int[][]{{0,0,myThirdOfScreen,600},
                 {myThirdOfScreen,0,myTwoThirdsOfScreen,600},
                 {myTwoThirdsOfScreen,0,myScreenWidth,600},

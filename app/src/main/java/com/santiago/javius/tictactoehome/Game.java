@@ -16,116 +16,78 @@ import android.widget.Toast;
 public class Game extends Activity
 {
 	private boolean isOn;
-    private boolean isSingle;
+    private boolean isSinglePlayer;
     private String playerTurn = "x";
-
+    private String gameMode;
     public Game()
     {
-        //createBoard();
+
     }
 
     public String checkForWin(TicTacToeBoard board)
     {
         String[] boardArr = board.getBoardArray();
 
-        if (boardArr[0].equals("x"))
+        //Horizontal wins
+        //top row
+        if(boardArr[0].equals("x")&&boardArr[1].equals("x")&&boardArr[2].equals("x"))
         {
-            //top row
-            if(boardArr[1].equals("x"))
-            {
-                if(boardArr[2].equals("x"))
-                {
-                    return "x";
-                }
-            }
-            //diagonal top left to bottom right
-            if(boardArr[4].equals("x"))
-            {
-                if(boardArr[8].equals("x"))
-                {
-                    return "x";
-                }
-            }
-            //left column
-            if(boardArr[3].equals("x"))
-            {
-                if(boardArr[6].equals("x"))
-                {
-                    return "x";
-                }
-            }
-        }
-        //left column
-        if(boardArr[2].equals("x"))
-        {
-            if(boardArr[5].equals("x"))
-            {
-                if(boardArr[8].equals("x"))
-                {
-                    return "x";
-                }
-            }
-        }
-        //middle column
-        if(boardArr[1].equals("x"))
-        {
-            if(boardArr[4].equals("x"))
-            {
-                if(boardArr[7].equals("x"))
-                {
-                    return "x";
-                }
-            }
+            return "x";
         }
         //middle row
-        if(boardArr[3].equals("x"))
+        if(boardArr[3].equals("x")&&boardArr[4].equals("x")&&boardArr[5].equals("x"))
         {
-            if(boardArr[4].equals("x"))
-            {
-                if(boardArr[5].equals("x"))
-                {
-                    return "x";
-                }
-            }
+            return "x";
         }
         //bottom row
-        if(boardArr[6].equals("x"))
+        if(boardArr[6].equals("x")&&boardArr[7].equals("x")&&boardArr[8].equals("x"))
         {
-            if(boardArr[7].equals("x"))
-            {
-                if(boardArr[8].equals("x"))
-                {
-                    return "x";
-                }
-            }
+            return "x";
         }
-        //diagonal bottom left to top right
-        if(boardArr[6].equals("x"))
+
+        //Vertical Wins
+        //left
+        if(boardArr[0].equals("x")&&boardArr[3].equals("x")&&boardArr[6].equals("x"))
         {
-            if(boardArr[4].equals("x"))
-            {
-                if(boardArr[2].equals("x"))
-                {
-                    return "x";
-                }
-            }
+            return "x";
+        }
+        //middle
+        if(boardArr[1].equals("x")&&boardArr[4].equals("x")&&boardArr[7].equals("x"))
+        {
+            return "x";
+        }
+        //right
+        if(boardArr[2].equals("x")&&boardArr[5].equals("x")&&boardArr[8].equals("x"))
+        {
+            return "x";
+        }
+
+        //Diagonal Wins
+        //top left bottom right
+        if(boardArr[0].equals("x")&&boardArr[4].equals("x")&&boardArr[8].equals("x"))
+        {
+            return "x";
+        }
+        //bottom left top right
+        if(boardArr[6].equals("x")&&boardArr[4].equals("x")&&boardArr[2].equals("x"))
+        {
+            return "x";
         }
 
         return "";  //returns empty if neither player one
     }
-    public void createBoard()
-    {
-        //myBoard = new TicTacToeBoard();
-    }
-
-    public boolean isGameSingle()
-    {
-        return isSingle;
-    }
 
     public void tileClicked(int tile, TicTacToeBoard board)
     {
-        if (isSingle)
+        if (gameMode.equals("single"))
+        {
+            if (board.isSpaceEmpty(tile))
+            {
+                board.placeGamePiece(tile,playerTurn);
+                botGo(board);
+            }
+        }
+        else
         {
             if (board.isSpaceEmpty(tile))
             {
@@ -133,12 +95,23 @@ public class Game extends Activity
                 switchPlayerTurn();
             }
         }
-        else    //game is in Two Player mode
-        {
 
-        }
     }
+    public void botGo(TicTacToeBoard board)
+    {
+        int randomTile;
+        boolean flag = true;
+        while(flag)
+        {
+            randomTile = (int) (Math.random() * 9);
+            if (board.isSpaceEmpty(randomTile))
+            {
+                board.placeGamePiece(randomTile, "o");
+                flag = false;
+            }
+        }
 
+    }
     private void switchPlayerTurn()
     {
         if (playerTurn.equals("x"))
@@ -149,14 +122,7 @@ public class Game extends Activity
 
     public void setMode(String mode)
     {
-        if (mode.equals("single"))
-        {
-            isSingle = true;
-        }
-        else
-        {
-            isSingle = false;
-        }
+        gameMode = mode;
     }
 
 }

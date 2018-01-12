@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity
     Player player = new Player();
     TicTacToeBoard board = new TicTacToeBoard();
     int[][] boardCoordinates;
-    boolean xIsWinner;
+    boolean xIsWinner = false;
+    boolean oIsWinner = false;
 
     // initialize the Activity with the View of the splash screen
     @Override
@@ -57,11 +58,12 @@ public class MainActivity extends AppCompatActivity
             {
                 xIsWinner = true;
                 Toast.makeText(MainActivity.this, "x won", Toast.LENGTH_LONG).show();   //says hi to the player (Learned from paid Udemy course by Rob Percival)
-
             }
             else if(game.checkForWin(board).equals("o"))
             {
-                xIsWinner = false;
+                oIsWinner = true;
+                Toast.makeText(MainActivity.this, "O Won", Toast.LENGTH_LONG).show();   //says hi to the player (Learned from paid Udemy course by Rob Percival)
+
             }
 
 
@@ -105,12 +107,12 @@ public class MainActivity extends AppCompatActivity
     //TODO: finish
     public void twoPlayerButtonClicked(View view)
     {
-        EditText nameEditText = (EditText) findViewById(R.id.nameEditText);
-       // playerName = nameEditText.getText().toString();
-
-        setContentView(ticTacToeBoardView);
-        //playerName = name;
-        //Log.i("info: ", playerName);
+        EditText nameEditText = (EditText) findViewById(R.id.nameEditText);     //initializes nameEditText
+        String playerName = nameEditText.getText().toString();                  //sets playerName equal to what is typed into nameEditText
+        player.setName(playerName);                                             //assigns playerName to the player's name
+        Toast.makeText(MainActivity.this, "Hello players ", Toast.LENGTH_LONG).show();   //says hi to the player (Learned from paid Udemy course by Rob Percival)
+        game.setMode("two");                                                 //sets game mode to single player
+        setContentView(ticTacToeBoardView);                                     //sets view to tictactoeboardview
     }
 
 
